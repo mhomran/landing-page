@@ -65,6 +65,15 @@ document.addEventListener("scroll", (e) => {
       section.classList.remove("active");
     }
   });
+
+  let scrollUp = document.querySelector(".scroll-up");
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    scrollUp.style.display = "block";
+    scrollUp.classList.add("anime-fade-in");
+  } else {
+    scrollUp.classList.remove("anime-fade-in");
+    scrollUp.style.display = "none";
+  }
 });
 
 // Scroll to section ID using scrollIntoView event
@@ -74,4 +83,9 @@ navBar.addEventListener("click", (e) => {
       behavior: "smooth",
     });
   }
+});
+
+//scroll up button handler
+document.querySelector(".scroll-up").addEventListener("click", () => {
+  window.scroll(0, 0);
 });
