@@ -59,23 +59,19 @@ document.querySelectorAll("section").forEach((section) => {
 document.addEventListener("scroll", (e) => {
   sections.forEach((section) => {
     let y = Math.abs(section.getBoundingClientRect().y);
-    if (y > 0 && y / window.innerHeight < 0.3) {
-      section.classList.add("your-active-class");
+    if (y >= 0 && y / window.innerHeight < 0.2) {
+      section.classList.add("active");
     } else {
-      section.classList.remove("your-active-class");
+      section.classList.remove("active");
     }
   });
 });
-// Scroll to anchor ID using scrollTO event
 
-/**
- * End Main Functions
- * Begin Events
- *
- */
-
-// Build menu
-
-// Scroll to section on link click
-
-// Set sections as active
+// Scroll to section ID using scrollIntoView event
+navBar.addEventListener("click", (e) => {
+  if (e.target.nodeName.toLowerCase() === "a") {
+    document.getElementById(e.target.textContent).scrollIntoView({
+      behavior: "smooth",
+    });
+  }
+});
