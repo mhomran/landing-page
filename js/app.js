@@ -37,10 +37,8 @@ let navBar;
  */
 
 // build the nav
-fragment = document.createDocumentFragment();
+let fragment = document.createDocumentFragment();
 document.querySelectorAll("section").forEach((section) => {
-  sections.push(section);
-
   let listItem = document.createElement("li");
   let anchor = document.createElement("a");
 
@@ -54,7 +52,20 @@ navBar = document.querySelector("#navbar__list");
 navBar.appendChild(fragment);
 
 // Add class 'active' to section when near top of viewport
+document.querySelectorAll("section").forEach((section) => {
+  sections.push(section);
+});
 
+document.addEventListener("scroll", (e) => {
+  sections.forEach((section) => {
+    let y = Math.abs(section.getBoundingClientRect().y);
+    if (y > 0 && y / window.innerHeight < 0.3) {
+      section.classList.add("your-active-class");
+    } else {
+      section.classList.remove("your-active-class");
+    }
+  });
+});
 // Scroll to anchor ID using scrollTO event
 
 /**
